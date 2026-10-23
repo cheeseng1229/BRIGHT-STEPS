@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrightSteps — Fun & Calm Learning Hub</title>
+  <!-- Dyslexia-friendly & highly legible rounded fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="dyslexia-friendly">
+  <!-- Top Navigation & Sensory Bar -->
+  <header class="top-bar" role="banner">
+    <div class="brand-area" id="homeLogoBtn" role="button" tabindex="0" aria-label="Go to Home Screen">
+      <span class="brand-icon" aria-hidden="true">🌈</span>
+      <div>
+        <h1 class="brand-title">BrightSteps</h1>
+        <p class="brand-subtitle" id="childGreeting">Hi Explorer! Let's learn together</p>
+      </div>
+    </div>
+
+    <div class="status-controls">
+      <!-- Star Counter & Sticker Book Button -->
+      <button class="pill-btn star-pill" id="openStickerBookBtn" title="Open My Sticker Book">
+        <span class="pill-icon">⭐</span>
+        <span id="starCountDisplay">0</span>
+        <span class="pill-label">Stars</span>
+      </button>
+
+      <!-- Streak Counter -->
+      <div class="pill-badge streak-pill" title="Current Streak">
+        <span class="pill-icon">🔥</span>
+        <span id="streakCountDisplay">1</span>
+        <span class="pill-label">Day</span>
+      </div>
+
+      <!-- Calm Breathe Corner Quick Button -->
+      <button class="pill-btn calm-pill" id="openCalmCornerBtn" title="Need a break? Calm Breathing Corner">
+        <span class="pill-icon">🫧</span>
+        <span class="pill-label">Calm Break</span>
+      </button>
+
+      <!-- Audio / Voice Toggle -->
+      <button class="icon-toggle-btn active" id="toggleVoiceBtn" aria-pressed="true" title="Toggle Read-Aloud Voice">
+        <span id="voiceIcon">🔊</span>
+        <span class="sr-only">Voice On</span>
+      </button>
+
+      <!-- Dyslexia Extra Spacing Toggle -->
+      <button class="icon-toggle-btn active" id="toggleDyslexiaBtn" aria-pressed="true" title="Toggle Extra Letter Spacing">
+        <span>Aa</span>
+      </button>
+
+      <!-- Parent Dashboard Button -->
+      <button class="pill-btn parent-pill" id="openParentBtn" title="Parent Dashboard & Settings">
+        <span class="pill-icon">⚙️</span>
+        <span class="pill-label">Parents</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="main-container" id="mainContainer">
+
+    <!-- ==================== VIEW 1: HOME HUB ==================== -->
+    <section id="view-home" class="view-section active" aria-labelledby="welcomeHeading">
+      <div class="welcome-banner">
+        <div class="welcome-text">
+          <h2 id="welcomeHeading">What would you like to play today?</h2>
+          <p>Tap any card below. Tap the <strong>🔊 speaker button</strong> anytime to hear instructions out loud!</p>
+        </div>
+        <button class="speak-btn large-speak-btn" id="speakWelcomeBtn" aria-label="Read welcome message aloud">
+          🔊 Read to Me
+        </button>
+      </div>
+
+      <!-- 4 Main Learning Activity Cards -->
+      <div class="activity-grid">
+        <!-- 1. Reading & Phonics (Dyslexia Support) -->
+        <article class="activity-card card-reading" data-target="view-reading" role="button" tabindex="0">
+          <div class="card-badge">Reading &amp; Phonics</div>
+          <div class="card-emoji" aria-hidden="true">🔤</div>
+          <h3>Word Builder &amp; Letters</h3>
+          <p>Build words with color-coded vowels &amp; consonants, and practice tricky letters like <strong>b</strong> and <strong>d</strong>.</p>
+          <div class="card-footer">
+            <span class="progress-tag" id="readingStatTag">0 words built</span>
+            <span class="play-cta">Play Now ➜</span>
+          </div>
+        </article>
+
+        <!-- 2. Visual Math & Ten-Frame (Dyscalculia Support) -->
+        <article class="activity-card card-math" data-target="view-math" role="button" tabindex="0">
+          <div class="card-badge">Numbers &amp; Math</div>
+          <div class="card-emoji" aria-hidden="true">🧮</div>
+          <h3>Visual Ten-Frame Math</h3>
+          <p>Count colorful dots, see numbers inside a 10-frame, and add groups together step-by-step.</p>
+          <div class="card-footer">
+            <span class="progress-tag" id="mathStatTag">0 puzzles solved</span>
+            <span class="play-cta">Play Now ➜</span>
+          </div>
+        </article>
+
+        <!-- 3. Focus & Memory (ADHD Support) -->
+        <article class="activity-card card-focus" data-target="view-focus" role="button" tabindex="0">
+          <div class="card-badge">Focus &amp; Memory</div>
+          <div class="card-emoji" aria-hidden="true">🧩</div>
+          <h3>Memory Match &amp; Patterns</h3>
+          <p>Short, fun brain games! Match picture pairs or repeat the glowing sound pattern.</p>
+          <div class="card-footer">
+            <span class="progress-tag" id="focusStatTag">0 games won</span>
+            <span class="play-cta">Play Now ➜</span>
+          </div>
+        </article>
+
+        <!-- 4. Visual Routine & Feelings (Autism / Executive Function Support) -->
+        <article class="activity-card card-routine" data-target="view-routine" role="button" tabindex="0">
+          <div class="card-badge">Daily Steps &amp; Feelings</div>
+          <div class="card-emoji" aria-hidden="true">🌟</div>
+          <h3>My Routine &amp; Feelings</h3>
+          <p>Check off your daily steps one by one and share how you are feeling today.</p>
+          <div class="card-footer">
+            <span class="progress-tag" id="routineStatTag">0 steps done</span>
+            <span class="play-cta">Open Now ➜</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 2: READING & PHONICS ==================== -->
+    <section id="view-reading" class="view-section" aria-label="Reading and Phonics Activity">
+      <div class="activity-topbar">
+        <button class="back-btn" data-back="view-home">⬅ Back Home</button>
+        <div class="mode-switcher" role="tablist">
+          <button class="mode-tab active" id="tabWordBuilder" role="tab" aria-selected="true">🔤 Word Builder</button>
+          <button class="mode-tab" id="tabLetterDetective" role="tab" aria-selected="false">🔍 b / d / p / q Detective</button>
+        </div>
+        <div class="session-progress" id="readingProgressText">Word 1</div>
+      </div>
+
+      <!-- Mode A: Word Builder -->
+      <div id="readingModeBuilder" class="sub-activity active">
+        <div class="game-card">
+          <div class="instruction-row">
+            <h2 id="readingPromptTitle">Tap the letters in order to build the word!</h2>
+            <button class="speak-btn" id="speakWordBtn">🔊 Hear Word</button>
+          </div>
+
+          <div class="word-showcase">
+            <div class="word-emoji" id="wordEmoji">🐱</div>
+            <p class="word-hint" id="wordHint">A furry pet that says meow</p>
+          </div>
+
+          <!-- Target Slots -->
+          <div class="letter-slots" id="letterSlotsContainer" aria-live="polite"></div>
+
+          <!-- Phonics Color Legend -->
+          <div class="phonics-legend">
+            <span class="legend-item"><span class="dot vowel-dot"></span> Orange = Vowel (A, E, I, O, U)</span>
+            <span class="legend-item"><span class="dot consonant-dot"></span> Blue = Consonant</span>
+          </div>
+
+          <!-- Scrambled Letter Choices -->
+          <div class="letter-choices" id="letterChoicesContainer"></div>
+
+          <div class="feedback-banner" id="readingFeedback" aria-live="assertive"></div>
+
+          <div class="action-row">
+            <button class="secondary-btn" id="readingHintBtn">💡 Give Me a Hint</button>
+            <button class="primary-btn hidden" id="nextWordBtn">Next Word ➜</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode B: b / d / p / q Letter Reversal Detective -->
+      <div id="readingModeDetective" class="sub-activity">
+        <div class="game-card">
+          <div class="instruction-row">
+            <h2 id="detectivePrompt">Find all the circles with the letter <span id="targetDetectiveLetter" class="highlight-letter">b</span>!</h2>
+            <button class="speak-btn" id="speakDetectiveBtn">🔊 Hear Tip</button>
+          </div>
+          <p class="memory-trick" id="detectiveMemoryTrick">💡 Trick: <strong>b</strong> has a belly facing right (like <strong>b</strong>ed)!</p>
+
+          <div class="detective-grid" id="detectiveGrid"></div>
+
+          <div class="feedback-banner" id="detectiveFeedback" aria-live="assertive"></div>
+
+          <div class="action-row">
+            <button class="primary-btn" id="newDetectiveRoundBtn">🔄 New Letter Round</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 3: VISUAL MATH (DYSCALCULIA) ==================== -->
+    <section id="view-math" class="view-section" aria-label="Visual Math Activity">
+      <div class="activity-topbar">
+        <button class="back-btn" data-back="view-home">⬅ Back Home</button>
+        <div class="mode-switcher" role="tablist">
+          <button class="mode-tab active" id="tabMathAddition" role="tab" aria-selected="true">➕ Visual Addition</button>
+          <button class="mode-tab" id="tabMathTenFrame" role="tab" aria-selected="true">🟢 Fill the 10-Frame</button>
+        </div>
+        <div class="session-progress" id="mathProgressText">Puzzle 1</div>
+      </div>
+
+      <!-- Mode A: Visual Addition with 10-Frame -->
+      <div id="mathModeAddition" class="sub-activity active">
+        <div class="game-card">
+          <div class="instruction-row">
+            <h2 id="mathAdditionPrompt">Count the colored dots inside the 10-frame to add them together!</h2>
+            <button class="speak-btn" id="speakMathBtn">🔊 Hear Question</button>
+          </div>
+
+          <!-- Visual Equation Display -->
+          <div class="visual-equation" id="visualEquation">
+            <div class="eq-box group-a">
+              <span class="eq-num" id="mathNumA">3</span>
+              <span class="eq-label">Blue Dots</span>
+            </div>
+            <span class="eq-sign">+</span>
+            <div class="eq-box group-b">
+              <span class="eq-num" id="mathNumB">2</span>
+              <span class="eq-label">Yellow Stars</span>
+            </div>
+            <span class="eq-sign">=</span>
+            <div class="eq-box group-total" id="mathAnswerSlot">?</div>
+          </div>
+
+          <!-- Interactive 10-Frame (Tap dots to count out loud!) -->
+          <p class="helper-caption">👆 Tap any item in the box below to count it out loud!</p>
+          <div class="ten-frame-grid" id="additionTenFrame"></div>
+
+          <!-- Number Choices -->
+          <div class="number-choices" id="mathChoicesContainer"></div>
+
+          <div class="feedback-banner" id="mathFeedback" aria-live="assertive"></div>
+
+          <div class="action-row">
+            <button class="secondary-btn" id="countAllAloudBtn">🗣️ Count Together Out Loud</button>
+            <button class="primary-btn hidden" id="nextMathBtn">Next Puzzle ➜</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode B: Interactive Fill the 10-Frame -->
+      <div id="mathModeTenFrame" class="sub-activity">
+        <div class="game-card">
+          <div class="instruction-row">
+            <h2 id="tenFrameTargetTitle">Tap the empty boxes to put <span class="highlight-letter" id="tenFrameTargetNum">6</span> apples in the 10-frame!</h2>
+            <button class="speak-btn" id="speakTenFrameBtn">🔊 Hear Goal</button>
+          </div>
+
+          <div class="counter-readout">
+            You have: <strong id="tenFrameCurrentCount">0</strong> / <span id="tenFrameGoalCount">6</span> 🍎
+          </div>
+
+          <div class="ten-frame-grid interactive-frame" id="interactiveTenFrame"></div>
+
+          <div class="feedback-banner" id="tenFrameFeedback" aria-live="assertive"></div>
+
+          <div class="action-row">
+            <button class="secondary-btn" id="clearTenFrameBtn">🧹 Clear Box</button>
+            <button class="primary-btn" id="checkTenFrameBtn">✅ Check My Count!</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 4: FOCUS & WORKING MEMORY (ADHD) ==================== -->
+    <section id="view-focus" class="view-section" aria-label="Focus and Memory Activity">
+      <div class="activity-topbar">
+        <button class="back-btn" data-back="view-home">⬅ Back Home</button>
+        <div class="mode-switcher" role="tablist">
+          <button class="mode-tab active" id="tabMemoryMatch" role="tab" aria-selected="true">🃏 Picture Match</button>
+          <button class="mode-tab" id="tabPatternRepeat" role="tab" aria-selected="false">🎵 Sound Pattern</button>
+        </div>
+        <div class="session-progress" id="focusProgressText">Pairs: 0 / 4</div>
+      </div>
+
+      <!-- Mode A: Bite-Sized Memory Match -->
+      <div id="focusModeMatch" class="sub-activity active">
+        <div class="game-card">
+          <div class="instruction-row">
+            <h2>Flip two cards at a time to find the matching pairs!</h2>
+            <button class="speak-btn" id="speakFocusMatchBtn">🔊 Instructions</button>
+          </div>
+
+          <div class="memory-board" id="memoryBoard"></div>
+
+          <div class="feedback-banner" id="memoryFeedback" aria-live="assertive"></div>
+
+          <div class="action-row">
+            <button class="primary-btn" id="restartMemoryBtn">🔄 Play New Cards</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode B: Visual & Audio Sequence Working Memory -->
+      <div id="focusModePattern" class="sub-activity">
+        <div class="game-card">
+          <div class="instruction-row">
+            <h2>Watch and listen to the glowing pads, then tap them in the same order!</h2>
+            <button class="speak-btn" id="speakPatternBtn">🔊 Instructions</button>
+          </div>
+
+          <div class="pattern-status" id="patternStatus">Level 1 (3 steps) — Press Start!</div>
+
+          <div class="pattern-grid" id="patternGrid">
+            <button class="pattern-pad pad-red" data-pad="0" aria-label="Red Strawberry">🍓<span>Red</span></button>
+            <button class="pattern-pad pad-blue" data-pad="1" aria-label="Blue Whale">🐳<span>Blue</span></button>
+            <button class="pattern-pad pad-green" data-pad="2" aria-label="Green Frog">🐸<span>Green</span></button>
+            <button class="pattern-pad pad-yellow" data-pad="3" aria-label="Yellow Sun">☀️<span>Yellow</span></button>
+          </div>
+
+          <div class="feedback-banner" id="patternFeedback" aria-live="assertive"></div>
+
+          <div class="action-row">
+            <button class="primary-btn" id="startPatternBtn">▶️ Watch Pattern</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 5: DAILY ROUTINE & FEELINGS (AUTISM / EXEC FUNCTION) ==================== -->
+    <section id="view-routine" class="view-section" aria-label="Visual Routine and Feelings Check-in">
+      <div class="activity-topbar">
+        <button class="back-btn" data-back="view-home">⬅ Back Home</button>
+        <div class="session-progress" id="routineProgressHeader">0 of 5 Done</div>
+      </div>
+
+      <div class="routine-layout">
+        <!-- Left Column: Visual Schedule Checklist -->
+        <div class="game-card routine-card">
+          <div class="instruction-row">
+            <h2>📋 My Step-by-Step Routine</h2>
+            <button class="speak-btn" id="speakRoutineBtn">🔊 Read Steps</button>
+          </div>
+          <p class="helper-caption">Tap each card when you finish the step to earn a ⭐ star!</p>
+
+          <!-- Progress Bar -->
+          <div class="routine-progress-bar-wrap" aria-hidden="true">
+            <div class="routine-progress-bar-fill" id="routineProgressBar" style="width: 0%"></div>
+          </div>
+
+          <div class="routine-list" id="routineListContainer"></div>
+
+          <div class="action-row">
+            <button class="secondary-btn" id="resetRoutineDayBtn">🌅 Start a Fresh Day</button>
+          </div>
+        </div>
+
+        <!-- Right Column: Feelings Check-In -->
+        <div class="game-card feelings-card">
+          <div class="instruction-row">
+            <h2>💛 How Are You Feeling Right Now?</h2>
+          </div>
+          <p class="helper-caption">Tap a face to share how your body and brain feel:</p>
+
+          <div class="feelings-grid" id="feelingsGrid">
+            <button class="feeling-btn" data-feeling="Happy and Ready" data-advice="Awesome! Your brain is ready to play and explore today.">
+              <span class="feeling-emoji">😊</span>
+              <span class="feeling-label">Happy &amp; Ready</span>
+            </button>
+            <button class="feeling-btn" data-feeling="Wiggly and Full of Energy" data-advice="It's okay to feel wiggly! Try doing 5 big jumping jacks or stretching your arms high to the sky.">
+              <span class="feeling-emoji">⚡</span>
+              <span class="feeling-label">Wiggly / Hyper</span>
+            </button>
+            <button class="feeling-btn" data-feeling="Tired or Low Energy" data-advice="Your body feels sleepy. Let's take it slow, drink some water, or do one easy game.">
+              <span class="feeling-emoji">😴</span>
+              <span class="feeling-label">Tired / Slow</span>
+            </button>
+            <button class="feeling-btn" data-feeling="Frustrated or Stuck" data-advice="Everyone gets frustrated sometimes! Let's take 3 slow belly breaths together in the Calm Break corner.">
+              <span class="feeling-emoji">😤</span>
+              <span class="feeling-label">Frustrated</span>
+            </button>
+            <button class="feeling-btn" data-feeling="Overwhelmed or Too Loud" data-advice="Let's make things quieter. You can turn off sounds at the top or take a Calm Breathing break.">
+              <span class="feeling-emoji">🥺</span>
+              <span class="feeling-label">Overwhelmed</span>
+            </button>
+            <button class="feeling-btn" data-feeling="Proud of Myself" data-advice="You SHOULD feel proud! Every step you try makes your brain stronger!">
+              <span class="feeling-emoji">🦸</span>
+              <span class="feeling-label">Proud!</span>
+            </button>
+          </div>
+
+          <div class="feeling-response-box hidden" id="feelingResponseBox">
+            <p id="feelingResponseText"></p>
+            <button class="secondary-btn" id="feelingToBreathBtn">🫧 Try 3 Calm Belly Breaths</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MODAL 1: STICKER BOOK REWARDS ==================== -->
+  <div class="modal-overlay hidden" id="stickerModal" role="dialog" aria-modal="true" aria-labelledby="stickerModalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="stickerModalTitle">🏆 My Star Jar &amp; Sticker Book</h2>
+        <button class="close-modal-btn" id="closeStickerModalBtn" aria-label="Close Sticker Book">✖</button>
+      </div>
+      <p class="modal-subtitle">Every <strong>5 ⭐ Stars</strong> you earn unlocks a new special sticker!</p>
+      <div class="sticker-progress-banner" id="stickerNextBanner">Keep going!</div>
+      <div class="sticker-grid" id="stickerGrid"></div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 2: CALM BREATHING CORNER ==================== -->
+  <div class="modal-overlay hidden" id="calmModal" role="dialog" aria-modal="true" aria-labelledby="calmModalTitle">
+    <div class="modal-card calm-modal-card">
+      <div class="modal-header">
+        <h2 id="calmModalTitle">🫧 Calm Breathing Break</h2>
+        <button class="close-modal-btn" id="closeCalmModalBtn" aria-label="Close Calm Corner">✖</button>
+      </div>
+      <p class="modal-subtitle">Follow the circle as it grows and shrinks. Let's take slow, gentle belly breaths.</p>
+
+      <div class="breathing-stage">
+        <div class="breathing-circle" id="breathingCircle">
+          <span id="breathingText">Tap Start</span>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button class="primary-btn" id="toggleBreathingBtn">▶️ Start Breathing Together</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 3: PARENT DASHBOARD & CUSTOMIZATION ==================== -->
+  <div class="modal-overlay hidden" id="parentModal" role="dialog" aria-modal="true" aria-labelledby="parentModalTitle">
+    <div class="modal-card parent-modal-card">
+      <div class="modal-header">
+        <h2 id="parentModalTitle">⚙️ Parent &amp; Teacher Dashboard</h2>
+        <button class="close-modal-btn" id="closeParentModalBtn" aria-label="Close Parent Dashboard">✖</button>
+      </div>
+
+      <!-- Parent Settings Grid -->
+      <div class="parent-sections">
+        <!-- 1. Child Profile & Progress Summary -->
+        <div class="parent-box">
+          <h3>📊 Child Profile &amp; Progress</h3>
+          <label class="form-label" for="childNameInput">Child's First Name:</label>
+          <div class="inline-form">
+            <input type="text" id="childNameInput" class="text-input" placeholder="e.g., Leo" maxlength="25" />
+            <button class="secondary-btn" id="saveChildNameBtn">Save Name</button>
+          </div>
+
+          <div class="stats-summary-grid" id="parentStatsGrid"></div>
+
+          <button class="danger-btn" id="resetAllProgressBtn">🗑️ Reset Stars &amp; Progress</button>
+        </div>
+
+        <!-- 2. Customize Word Builder List -->
+        <div class="parent-box">
+          <h3>🔤 Customize Reading Words</h3>
+          <p class="small-note">Add sight words or phonics words your child is practicing at school:</p>
+          <div class="add-item-form">
+            <input type="text" id="customWordInput" class="text-input" placeholder="Word (e.g. FROG)" maxlength="10" />
+            <input type="text" id="customEmojiInput" class="text-input emoji-input" placeholder="🐸" maxlength="4" />
+            <input type="text" id="customHintInput" class="text-input" placeholder="Short clue (e.g. Green jumper)" maxlength="60" />
+            <button class="primary-btn small-btn" id="addCustomWordBtn">+ Add Word</button>
+          </div>
+          <ul class="custom-list" id="parentWordList"></ul>
+        </div>
+
+        <!-- 3. Customize Daily Routine Steps -->
+        <div class="parent-box">
+          <h3>📋 Customize Daily Routine Steps</h3>
+          <p class="small-note">Tailor the visual checklist to your child's morning, homework, or bedtime routine:</p>
+          <div class="add-item-form">
+            <input type="text" id="customRoutineEmoji" class="text-input emoji-input" placeholder="🪥" maxlength="4" />
+            <input type="text" id="customRoutineText" class="text-input" placeholder="Step (e.g. Brush teeth for 2 mins)" maxlength="60" />
+            <button class="primary-btn small-btn" id="addCustomRoutineBtn">+ Add Step</button>
+          </div>
+          <ul class="custom-list" id="parentRoutineList"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Reward Toast -->
+  <div id="starToast" class="star-toast hidden" aria-live="polite">⭐ +1 Star! Great job!</div>
+
+  <script src="app.js"></script>
+</body>
+</html>
